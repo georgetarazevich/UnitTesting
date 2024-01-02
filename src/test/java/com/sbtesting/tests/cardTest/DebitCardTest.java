@@ -1,0 +1,72 @@
+package com.sbtesting.tests.cardTest;
+
+import com.sbtesting.fw.model.card.DebitCard;
+import com.sbtesting.tests.BaseTest;
+import org.apache.log4j.Logger;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.lang.reflect.Method;
+import java.math.BigDecimal;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class DebitCardTest extends BaseTest {
+
+    private static Logger log = Logger.getLogger(DebitCardTest.class.getName());
+
+    DebitCard debitCard = null;
+
+    @Test
+    public void getCreditCardBalance() {
+        BigDecimal balanceValue = debitCard.getBalance();
+        assertThat(balanceValue).isEqualTo(new BigDecimal(10));
+    }
+
+    @Test
+    public void creditCardCurrencyCheck() {
+        assertThat(debitCard.currency).isEqualTo("CurrencyCreditCard");
+    }
+
+    @Test
+    public void creditCardNameCheck() {
+        assertThat(debitCard.name).isEqualTo("creditCard");
+    }
+
+    @Test
+    public void refillCreditCardCheckSucceed() {
+        debitCard.refill(new BigDecimal(2));
+        assertThat(debitCard.getBalance()).isEqualTo(new BigDecimal(12));
+    }
+
+    @Test
+    public void writeOffCreditCardCheckBalanceZero() {
+        debitCard.writeOff(new BigDecimal(10));
+        assertThat(debitCard.getBalance()).isEqualTo(new BigDecimal(0));
+    }
+
+    @Test
+    public void writeOffCreditCardCheckBalanceUnchanged() {
+        debitCard.writeOff(new BigDecimal(15));
+        assertThat(debitCard.getBalance()).isEqualTo(new BigDecimal(10));
+    }
+
+    @Test
+    public void writeOffCreditCardCheckSucceed() {
+        debitCard.writeOff(new BigDecimal(2));
+        assertThat(debitCard.getBalance()).isEqualTo(new BigDecimal(8));
+    }
+
+    @BeforeMethod
+    public void setup(Method method) {
+        log.info("Running Test: " + method.getName());
+        debitCard = new DebitCard("creditCard", "CurrencyCreditCard", new BigDecimal(10));
+    }
+
+    @AfterMethod
+    public void teardown(ITestResult result) {
+        log.info("Done\n\n");
+    }
+}

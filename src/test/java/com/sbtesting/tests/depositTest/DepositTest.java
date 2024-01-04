@@ -45,13 +45,13 @@ public class DepositTest extends BaseTest {
 
     @Test
     public void depositCurrencyCheck() {
-        assertThat(deposit.currency).isEqualTo("Currency");
+        assertThat(deposit.currency).isEqualTo("NameOfTheCurrency");
     }
 
     @BeforeMethod
     public void setup(Method method) {
         log.info("Running Test: " + method.getName());
-        deposit = new Deposit("depositName", "Currency", new BigDecimal(10));
+        deposit = new Deposit("depositName", "NameOfTheCurrency", new BigDecimal(10));
     }
 
     @AfterMethod

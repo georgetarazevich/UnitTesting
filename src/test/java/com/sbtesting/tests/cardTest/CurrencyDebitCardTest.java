@@ -19,41 +19,41 @@ public class CurrencyDebitCardTest extends BaseTest {
     CurrencyDebitCard currencyDebitCard = null;
 
     @Test
-    public void getCreditCardBalance() {
+    public void getCurrencyDebitCardBalance() {
         BigDecimal balanceValue = currencyDebitCard.getBalance();
         assertThat(balanceValue).isEqualTo(new BigDecimal(10));
     }
 
     @Test
-    public void creditCardCurrencyCheck() {
-        assertThat(currencyDebitCard.currency).isEqualTo("CurrencyCreditCard");
+    public void currencyDebitCardCurrencyCheck() {
+        assertThat(currencyDebitCard.currency).isEqualTo("NameOfTheCurrency");
     }
 
     @Test
-    public void creditCardNameCheck() {
-        assertThat(currencyDebitCard.name).isEqualTo("creditCard");
+    public void currencyDebitCardNameCheck() {
+        assertThat(currencyDebitCard.name).isEqualTo("CurrencyDebitCardName");
     }
 
     @Test
-    public void refillCreditCardCheckSucceed() {
+    public void refillCurrencyDebitCardCheckSucceed() {
         currencyDebitCard.refill(new BigDecimal(2));
         assertThat(currencyDebitCard.getBalance()).isEqualTo(new BigDecimal(12));
     }
 
     @Test
-    public void writeOffCreditCardCheckBalanceZero() {
+    public void writeOffCurrencyDebitCardCheckBalanceZero() {
         currencyDebitCard.writeOff(new BigDecimal(10));
         assertThat(currencyDebitCard.getBalance()).isEqualTo(new BigDecimal(0));
     }
 
     @Test
-    public void writeOffCreditCardCheckBalanceUnchanged() {
+    public void writeOffCurrencyDebitCardCheckBalanceUnchanged() {
         currencyDebitCard.writeOff(new BigDecimal(15));
         assertThat(currencyDebitCard.getBalance()).isEqualTo(new BigDecimal(10));
     }
 
     @Test
-    public void writeOffCreditCardCheckSucceed() {
+    public void writeOffCurrencyDebitCardCheckSucceed() {
         currencyDebitCard.writeOff(new BigDecimal(2));
         assertThat(currencyDebitCard.getBalance()).isEqualTo(new BigDecimal(8));
     }
@@ -61,7 +61,7 @@ public class CurrencyDebitCardTest extends BaseTest {
     @BeforeMethod
     public void setup(Method method) {
         log.info("Running Test: " + method.getName());
-        currencyDebitCard = new CurrencyDebitCard("creditCard", "CurrencyCreditCard", new BigDecimal(10));
+        currencyDebitCard = new CurrencyDebitCard("CurrencyDebitCardName", "NameOfTheCurrency", new BigDecimal(10));
     }
 
     @AfterMethod

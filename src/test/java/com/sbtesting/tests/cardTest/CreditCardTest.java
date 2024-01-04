@@ -26,7 +26,7 @@ public class CreditCardTest extends BaseTest {
 
     @Test
     public void creditCardCurrencyCheck() {
-        assertThat(creditCard.currency).isEqualTo("CurrencyCreditCard");
+        assertThat(creditCard.currency).isEqualTo("NameOfTheCurrency");
     }
 
     @Test
@@ -66,7 +66,7 @@ public class CreditCardTest extends BaseTest {
     @BeforeMethod
     public void setup(Method method) {
         log.info("Running Test: " + method.getName());
-        creditCard = new CreditCard("creditCard", "CurrencyCreditCard", new BigDecimal(10), new BigDecimal(5));
+        creditCard = new CreditCard("creditCard", "NameOfTheCurrency", new BigDecimal(10), new BigDecimal(5));
     }
 
     @AfterMethod

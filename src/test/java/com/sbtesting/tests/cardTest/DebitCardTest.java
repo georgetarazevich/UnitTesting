@@ -20,41 +20,41 @@ public class DebitCardTest extends BaseTest {
     DebitCard debitCard = null;
 
     @Test
-    public void getCreditCardBalance() {
+    public void getDebitCardBalance() {
         BigDecimal balanceValue = debitCard.getBalance();
         assertThat(balanceValue).isEqualTo(new BigDecimal(10));
     }
 
     @Test
-    public void creditCardCurrencyCheck() {
-        assertThat(debitCard.currency).isEqualTo("CurrencyCreditCard");
+    public void debitCardCurrencyCheck() {
+        assertThat(debitCard.currency).isEqualTo("NameOfTheCurrency");
     }
 
     @Test
-    public void creditCardNameCheck() {
-        assertThat(debitCard.name).isEqualTo("creditCard");
+    public void debitCardNameCheck() {
+        assertThat(debitCard.name).isEqualTo("debitCard");
     }
 
     @Test
-    public void refillCreditCardCheckSucceed() {
+    public void refillDebitCardCheckSucceed() {
         debitCard.refill(new BigDecimal(2));
         assertThat(debitCard.getBalance()).isEqualTo(new BigDecimal(12));
     }
 
     @Test
-    public void writeOffCreditCardCheckBalanceZero() {
+    public void writeOffDebitCardCheckBalanceZero() {
         debitCard.writeOff(new BigDecimal(10));
         assertThat(debitCard.getBalance()).isEqualTo(new BigDecimal(0));
     }
 
     @Test
-    public void writeOffCreditCardCheckBalanceUnchanged() {
+    public void writeOffDebitCardCheckBalanceUnchanged() {
         debitCard.writeOff(new BigDecimal(15));
         assertThat(debitCard.getBalance()).isEqualTo(new BigDecimal(10));
     }
 
     @Test
-    public void writeOffCreditCardCheckSucceed() {
+    public void writeOffDebitCardCheckSucceed() {
         debitCard.writeOff(new BigDecimal(2));
         assertThat(debitCard.getBalance()).isEqualTo(new BigDecimal(8));
     }
@@ -62,7 +62,7 @@ public class DebitCardTest extends BaseTest {
     @BeforeMethod
     public void setup(Method method) {
         log.info("Running Test: " + method.getName());
-        debitCard = new DebitCard("creditCard", "CurrencyCreditCard", new BigDecimal(10));
+        debitCard = new DebitCard("debitCard", "NameOfTheCurrency", new BigDecimal(10));
     }
 
     @AfterMethod

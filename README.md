@@ -23,8 +23,12 @@ In order to run tests you'll need:
 3. `mvn test -P CardTests`   Profile CardTests
 
 
-### Checking  results
+### Checking  results:
 When the tests are finished, the folder 'target' contains:
 1. tests_log.log file with information on each test
 2. surefire-reports subfolder with emailable-report
-3. allure-results subfolder to see results in Allure-result
+3. allure-results subfolder to see results in Allure report
+
+### Link to BDD tests:
+Link: https://github.com/georgetarazevich/BDDTesting
+
